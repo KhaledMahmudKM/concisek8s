@@ -285,3 +285,63 @@ Not everything is namespaced. Nodes, PersistentVolumes, and StorageClasses belon
 - A single `kubectl apply` ripples through several independent controllers, each reacting to what the previous one wrote.
 
 Next, you will build a cluster of your own and run these commands for real.
+
+## Check your understanding
+
+Choose the best answer for each question, then check your answers in [Answers to Chapter Questions](answers.md#chapter-2-architecture-and-the-control-loop).
+
+**1. Which component is the only one that reads and writes etcd?**
+
+- A. The scheduler
+- B. The kubelet
+- C. The controller manager
+- D. The kube-apiserver
+
+**2. Why do production clusters run three or five etcd members?**
+
+- A. To spread the load of writes
+- B. Raft consensus tolerates the loss of a minority of members
+- C. Each namespace needs its own member
+- D. kubectl needs one per user
+
+**3. What does the kube-scheduler do with a new Pod?**
+
+- A. Starts its containers
+- B. Creates its ReplicaSet
+- C. Assigns its IP address
+- D. Filters and scores nodes, then binds the Pod to the best node through the API server
+
+**4. What lets Kubernetes components react to changes without polling?**
+
+- A. Watches: long-lived connections that stream object changes
+- B. Cron jobs
+- C. SSH sessions
+- D. Webhooks to each node
+
+**5. In every Kubernetes object, what is the status?**
+
+- A. The desired state you wrote
+- B. The object's version number
+- C. What the responsible controller last observed
+- D. The namespace it lives in
+
+**6. What does level-triggered mean for a controller?**
+
+- A. It reacts only to events at the moment they happen
+- B. It processes objects in priority levels
+- C. It only runs at fixed intervals
+- D. It reacts to the difference between desired and current state whenever it notices, so missed events cannot leave it wrong
+
+**7. After kubectl apply creates a Deployment, how does the scheduler learn about the new Pods?**
+
+- A. The Deployment controller calls the scheduler directly
+- B. It watches the API server and sees Pods with no node assigned
+- C. kubectl sends them to it
+- D. The kubelet forwards them
+
+**8. Which namespace holds cluster components such as CoreDNS and kube-proxy?**
+
+- A. default
+- B. kube-public
+- C. kube-system
+- D. kube-node-lease

@@ -455,3 +455,63 @@ A related field, `internalTrafficPolicy: Local`, keeps in-cluster traffic on the
 - **NodePort** and **LoadBalancer** add external entry points; **externalTrafficPolicy** trades even load against preserving the client IP.
 
 Services give you stable IPs, but nobody wants to hard-code IPs. The next chapter covers the DNS layer that turns Service names into addresses.
+
+## Check your understanding
+
+Choose the best answer for each question, then check your answers in [Answers to Chapter Questions](answers.md#chapter-7-services-and-kube-proxy).
+
+**1. What does a Service give a set of Pods?**
+
+- A. One stable virtual IP (the ClusterIP) and port, with load spread across matching Pods
+- B. Persistent storage
+- C. A fixed node
+- D. A container image
+
+**2. Which object lists the IPs and ports of the Pods behind a Service?**
+
+- A. The Service itself
+- B. The ReplicaSet
+- C. EndpointSlices
+- D. The Ingress
+
+**3. Which machine owns a Service's ClusterIP?**
+
+- A. The control plane node
+- B. The node running the first backend Pod
+- C. The CoreDNS Pod
+- D. None: it exists only as a match in rules kube-proxy installs on every node
+
+**4. What does a kube-proxy rule do to a packet sent to a ClusterIP?**
+
+- A. Encrypts it
+- B. DNAT: rewrites the destination to one backend Pod's IP and target port
+- C. Drops it unless a policy allows it
+- D. Forwards it to the API server
+
+**5. Why can a gRPC client stick to one backend Pod behind a ClusterIP Service?**
+
+- A. gRPC does not support Services
+- B. Services only use one Pod at a time
+- C. Balancing is per connection, and gRPC keeps one long-lived connection
+- D. kube-proxy pins clients by IP
+
+**6. Which kube-proxy mode is recommended for new clusters, with roughly constant-time lookups?**
+
+- A. nftables
+- B. iptables
+- C. IPVS
+- D. userspace
+
+**7. What does a NodePort Service add to a ClusterIP Service?**
+
+- A. The same port, from 30000 to 32767, opened on every node
+- B. An external cloud load balancer
+- C. A DNS CNAME
+- D. A headless DNS record
+
+**8. What is the trade-off of externalTrafficPolicy: Local?**
+
+- A. It encrypts traffic but is slower
+- B. It forwards to any node but hides the client IP
+- C. It preserves the client IP, but load is only as even as Pod placement
+- D. It disables health checks

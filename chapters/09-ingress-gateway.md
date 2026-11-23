@@ -388,3 +388,63 @@ For a new cluster, start with the **Gateway API**. It is where all new developme
 - In kind, **cloud-provider-kind** supplies both LoadBalancer addresses and a Gateway API controller.
 
 Traffic can now reach your Pods from inside and outside the cluster. The last networking chapter is about stopping the traffic that should not.
+
+## Check your understanding
+
+Choose the best answer for each question, then check your answers in [Answers to Chapter Questions](answers.md#chapter-9-ingress-and-the-gateway-api).
+
+**1. What does a Layer 7 entry point such as Ingress add over a LoadBalancer Service?**
+
+- A. Routing by host and path, shared TLS and one address for many Services
+- B. More IP addresses
+- C. Faster TCP
+- D. Pod autoscaling
+
+**2. What does an Ingress object do on its own?**
+
+- A. Routes traffic directly
+- B. Creates a cloud load balancer
+- C. Nothing: an installed Ingress controller must watch it and configure itself
+- D. Issues TLS certificates
+
+**3. Why did Ingress manifests rarely work across controllers?**
+
+- A. They used different apiVersions
+- B. Features beyond host and path were bolted on with controller-specific annotations
+- C. Controllers could not share Services
+- D. Each controller needed its own namespace
+
+**4. What is the current status of the Ingress API?**
+
+- A. Removed from Kubernetes
+- B. Replaced by Services
+- C. In beta
+- D. Supported and stable, but frozen: no new features
+
+**5. In the Gateway API, which resource does the cluster operator own: listeners, host names and TLS certificates?**
+
+- A. GatewayClass
+- B. Gateway
+- C. HTTPRoute
+- D. ReferenceGrant
+
+**6. How does an HTTPRoute attach to a Gateway?**
+
+- A. Through labels
+- B. Through annotations
+- C. Through the GatewayClass
+- D. Through parentRefs
+
+**7. How does the Gateway API express a 90/10 canary split?**
+
+- A. With weighted backendRefs, an ordinary typed field
+- B. With a controller-specific annotation
+- C. With two Services
+- D. With a NetworkPolicy
+
+**8. What must exist before an HTTPRoute can send traffic to a Service in another namespace?**
+
+- A. A NetworkPolicy
+- B. A second Gateway
+- C. A ReferenceGrant in the target namespace
+- D. A ClusterRole

@@ -316,3 +316,63 @@ spec:
 - **Init containers** prepare a Pod; **sidecars** run beside the app for its whole life.
 
 The next chapter introduces the controllers that create and replace Pods for you.
+
+## Check your understanding
+
+Choose the best answer for each question, then check your answers in [Answers to Chapter Questions](answers.md#chapter-4-pods).
+
+**1. What do the containers in one Pod share?**
+
+- A. Nothing: each has its own IP and filesystem
+- B. One network namespace (one IP, localhost) and any declared volumes
+- C. Only a node
+- D. A container image
+
+**2. Two containers in the same Pod both try to listen on port 8080. What happens?**
+
+- A. Both work, on different IPs
+- B. Kubernetes renumbers one of them
+- C. They conflict: they share one network namespace
+- D. The second becomes a sidecar
+
+**3. What is the job of the pause container?**
+
+- A. Holding the Pod's network namespace open so the real containers can join it
+- B. Pausing a Pod during updates
+- C. Throttling CPU
+- D. Running init tasks
+
+**4. A Pod's node dies. What happens to the Pod?**
+
+- A. It is gone; a controller creates a new Pod with a new name and IP
+- B. It is restarted on another node with the same name and IP
+- C. It waits until the node returns
+- D. It moves to the control plane
+
+**5. What does containerPort in a Pod manifest do?**
+
+- A. Opens a firewall port
+- B. Publishes the port on the node
+- C. Documents and names the port; the container is reachable on any port it listens on
+- D. Limits the container to that port
+
+**6. A Pod shows CrashLoopBackOff. What is the best next step?**
+
+- A. Delete the node
+- B. kubectl logs --previous to see the output of the crashed attempt
+- C. Increase replicas
+- D. Change the restartPolicy to Never
+
+**7. How do controllers and Services find their Pods?**
+
+- A. By Pod name
+- B. By Pod IP
+- C. By node
+- D. With label selectors
+
+**8. How does Kubernetes model a native sidecar container?**
+
+- A. As a second Pod
+- B. As an init container with restartPolicy: Always
+- C. As a DaemonSet
+- D. As an annotation

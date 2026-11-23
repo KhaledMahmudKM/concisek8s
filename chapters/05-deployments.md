@@ -431,3 +431,63 @@ Job Pods must use `restartPolicy: OnFailure` or `Never`, since a container that 
 - Use a **StatefulSet** for stable identity and storage, a **DaemonSet** for one Pod per node, and a **Job** or **CronJob** for run-to-completion work.
 
 Your Pods are now running and self-healing. Part III answers the next question: how does anything talk to them?
+
+## Check your understanding
+
+Choose the best answer for each question, then check your answers in [Answers to Chapter Questions](answers.md#chapter-5-deployments-and-other-controllers).
+
+**1. What does a Deployment manage directly?**
+
+- A. ReplicaSets
+- B. Containers
+- C. Pods
+- D. Nodes
+
+**2. Why does a Deployment use ReplicaSets instead of managing Pods itself?**
+
+- A. ReplicaSets are faster
+- B. ReplicaSets store the images
+- C. To move between Pod templates safely, it runs an old and a new ReplicaSet during a rollout
+- D. Pods cannot be created without them
+
+**3. What do maxSurge and maxUnavailable control?**
+
+- A. The number of nodes
+- B. How far above and below the desired Pod count a rolling update may go
+- C. Image pull retries
+- D. The HorizontalPodAutoscaler limits
+
+**4. Which settings give the most conservative rolling update, where capacity never drops?**
+
+- A. maxSurge 0, maxUnavailable 1
+- B. maxSurge 25%, maxUnavailable 25%
+- C. strategy Recreate
+- D. maxSurge 1, maxUnavailable 0
+
+**5. Why do readiness probes matter for rollouts?**
+
+- A. They speed up image pulls
+- B. Old Pods are removed only when new Pods report Ready; without a probe, a broken version can roll out completely
+- C. They restart crashed containers
+- D. They set CPU limits
+
+**6. How does kubectl rollout undo work?**
+
+- A. It rebuilds the old image
+- B. It restores etcd from backup
+- C. It edits your YAML file
+- D. It scales a kept, old ReplicaSet back up
+
+**7. Which controller gives replicas stable names like db-0 and their own persistent storage?**
+
+- A. StatefulSet
+- B. Deployment
+- C. DaemonSet
+- D. Job
+
+**8. Which controller runs exactly one Pod on every node, such as a log collector?**
+
+- A. StatefulSet
+- B. CronJob
+- C. DaemonSet
+- D. ReplicaSet

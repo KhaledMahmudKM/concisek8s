@@ -395,3 +395,63 @@ Finally, prove the "no NAT" rule. Start a second Pod on the other worker, then p
 - All of it is ordinary Linux networking, so `ip route`, `ip link`, and `tcpdump` on a node show you exactly what is happening.
 
 Pod IPs are reachable but not stable. The next chapter adds the stable layer on top: Services.
+
+## Check your understanding
+
+Choose the best answer for each question, then check your answers in [Answers to Chapter Questions](answers.md#chapter-6-the-network-model-and-cni).
+
+**1. Which of these is one of the Kubernetes network model's rules?**
+
+- A. Pods reach each other through NAT on each node
+- B. Each container gets its own IP
+- C. Pods can only reach Pods on the same node
+- D. Pods can reach all other Pods, on any node, without NAT
+
+**2. Who actually implements the Kubernetes network model?**
+
+- A. kube-proxy
+- B. The CNI plugin
+- C. The scheduler
+- D. etcd
+
+**3. In kind, what is 10.244.0.0/16 by default?**
+
+- A. The Service CIDR
+- B. The node network
+- C. The DNS range
+- D. The Pod CIDR, split into per-node blocks
+
+**4. When does the container runtime call the CNI plugin with ADD?**
+
+- A. When a Pod's sandbox is created on a node
+- B. When a node joins
+- C. When a Service is created
+- D. When kubectl apply runs
+
+**5. What is a veth pair?**
+
+- A. Two Pods sharing an IP
+- B. A pair of nodes
+- C. A virtual cable: what enters one end comes out the other
+- D. A VXLAN tunnel
+
+**6. Traffic goes between two Pods on the same node. Where does it travel?**
+
+- A. Out to the physical network and back
+- B. Through the API server
+- C. Through a VXLAN tunnel
+- D. Only inside the host: Pod veth, host routing table, other Pod's veth
+
+**7. What does an overlay CNI do with packets between nodes?**
+
+- A. Rewrites the Pod IPs to node IPs
+- B. Encapsulates them, usually in VXLAN or Geneve, inside UDP between node IPs
+- C. Sends them through the control plane
+- D. Drops them unless a policy allows them
+
+**8. What is a cost of overlay networking compared with direct routing?**
+
+- A. It needs BGP on the physical network
+- B. Pods lose their IPs
+- C. Header overhead, which needs a slightly smaller MTU inside Pods
+- D. It only works in the cloud

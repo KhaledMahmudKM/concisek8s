@@ -251,3 +251,63 @@ Today every major cloud offers managed Kubernetes (EKS, GKE, AKS, and others), a
 - It delegates running containers to a runtime such as containerd, so your Docker images work as they are.
 
 The next chapter opens up a cluster and shows which components do each of these jobs.
+
+## Check your understanding
+
+Choose the best answer for each question, then check your answers in [Answers to Chapter Questions](answers.md#chapter-1-why-kubernetes).
+
+**1. Which job does Kubernetes do that Docker on a single host does not?**
+
+- A. Orchestrate containers across many machines: placement, failure, discovery and change
+- B. Package an application into an image
+- C. Run a container from an image
+- D. Build images from a Dockerfile
+
+**2. A container moves to a new machine and gets a new IP address. Which orchestration problem is this?**
+
+- A. Placement
+- B. Failure
+- C. Discovery
+- D. Change
+
+**3. What does it mean that Kubernetes is declarative?**
+
+- A. You issue commands one step at a time
+- B. You describe the desired state and the cluster works continuously to make reality match it
+- C. Every command must be confirmed before it runs
+- D. Configuration is written in a declarative language other than YAML
+
+**4. A node dies at 3 a.m. and one of three requested replicas disappears. What happens?**
+
+- A. Nothing until an administrator restarts it
+- B. The whole Deployment is deleted
+- C. The desired state is lowered to two
+- D. The cluster sees two running where three are desired and starts a third on a healthy node
+
+**5. How do you roll out version 1.3 of an image declaratively?**
+
+- A. Stop all Pods and start new ones by hand
+- B. Change the image in the description from 1.2 to 1.3 and let the cluster work out the steps
+- C. Run docker pull on every node
+- D. Delete the Deployment and create a new one
+
+**6. What actually runs the containers on a Kubernetes node?**
+
+- A. The kube-apiserver
+- B. etcd
+- C. The scheduler
+- D. A container runtime such as containerd, through the CRI
+
+**7. When is Docker Compose often a better choice than Kubernetes?**
+
+- A. For one app on one server
+- B. For hundreds of services across many machines
+- C. When you need self-healing
+- D. When you need zero-downtime updates
+
+**8. What does the abbreviation K8s stand for?**
+
+- A. Kubernetes version 8
+- B. Eight Kubernetes components
+- C. Kubernetes: K, eight letters, then s
+- D. Kubernetes on 8 nodes

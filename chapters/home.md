@@ -22,7 +22,7 @@ The networking chapters go deeper than most introductions. They follow real pack
 
 **Part IV, Configuration and Operations.** ConfigMaps, Secrets, and persistent storage, then the practices that keep workloads healthy: resource requests and limits, probes, autoscaling, RBAC, and troubleshooting.
 
-The **Appendix** is a kubectl reference, and the **Glossary** defines every term.
+Each chapter ends with **Check your understanding**, eight multiple-choice questions. The **Appendix** is a kubectl reference, the **Glossary** defines every term, and **Answers to Chapter Questions** gives every answer with a short explanation.
 
 ---
 

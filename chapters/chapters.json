@@ -1,17 +1,17 @@
 [
   {
-    "separator": "Part I \u00b7 Foundations"
+    "separator": "Part I · Foundations"
   },
   "01-why-kubernetes.md",
   "02-architecture.md",
   "03-lab-cluster.md",
   {
-    "separator": "Part II \u00b7 Workloads"
+    "separator": "Part II · Workloads"
   },
   "04-pods.md",
   "05-deployments.md",
   {
-    "separator": "Part III \u00b7 Networking"
+    "separator": "Part III · Networking"
   },
   "06-network-model.md",
   "07-services.md",
@@ -19,7 +19,7 @@
   "09-ingress-gateway.md",
   "10-network-policies.md",
   {
-    "separator": "Part IV \u00b7 Configuration and Operations"
+    "separator": "Part IV · Configuration and Operations"
   },
   "11-config-storage.md",
   "12-running-well.md",
@@ -27,5 +27,6 @@
     "separator": "Appendix"
   },
   "13-kubectl-reference.md",
-  "glossary.md"
+  "glossary.md",
+  "answers.md"
 ]

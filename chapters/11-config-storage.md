@@ -357,3 +357,63 @@ Because local-path storage lives on one node's disk, a Pod using it is pinned to
 - Applications request storage with a **PVC**; a **StorageClass** provisions a **PV** on demand. Mind the **access mode** and **reclaim policy**.
 
 The final chapter brings everything together into the practices that keep workloads healthy in production.
+
+## Check your understanding
+
+Choose the best answer for each question, then check your answers in [Answers to Chapter Questions](answers.md#chapter-11-configuration-and-storage).
+
+**1. A ConfigMap value is consumed as an environment variable, and the ConfigMap changes. When does the container see the new value?**
+
+- A. Only when the Pod is replaced
+- B. Immediately
+- C. Within a minute
+- D. Never
+
+**2. What is a common pattern to make config changes roll out like code changes?**
+
+- A. Restart the nodes
+- B. Use hostPath volumes
+- C. Put a hash of the configuration in a Pod template annotation, so a change triggers a rolling update
+- D. Edit the files inside running containers
+
+**3. How are the values in a Kubernetes Secret stored in the object?**
+
+- A. AES-encrypted
+- B. Hashed with SHA-256
+- C. Signed but readable
+- D. Base64-encoded, which anyone can reverse
+
+**4. Which of these actually protects Secrets?**
+
+- A. Base64 encoding
+- B. Encryption at rest in etcd plus tight RBAC
+- C. Putting them in a ConfigMap
+- D. Committing them to a private Git repository
+
+**5. Which volume type is deleted when its Pod is removed but survives container restarts?**
+
+- A. hostPath
+- B. persistentVolumeClaim
+- C. emptyDir
+- D. secret
+
+**6. What is a PersistentVolumeClaim?**
+
+- A. A namespaced request for storage: size, access mode and optionally a StorageClass
+- B. A piece of real storage
+- C. A storage provisioner
+- D. A backup of a volume
+
+**7. Which access mode does cloud block storage almost always support?**
+
+- A. ReadWriteOnce
+- B. ReadWriteMany
+- C. ReadOnlyMany
+- D. ReadWriteAll
+
+**8. A StorageClass has reclaimPolicy: Delete. What happens when its PVC is deleted?**
+
+- A. The volume is kept for recovery
+- B. The volume is archived
+- C. The dynamically created volume, and its data, is destroyed
+- D. Nothing until the namespace is deleted

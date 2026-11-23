@@ -367,3 +367,63 @@ The NetworkPolicy API is deliberately small: namespaced, allow-only, and Layer 3
 - Restricting egress blocks **DNS** too. Always allow port 53 to `kube-dns`.
 
 That completes the networking part. Part IV turns to configuration, storage, and keeping workloads healthy in production.
+
+## Check your understanding
+
+Choose the best answer for each question, then check your answers in [Answers to Chapter Questions](answers.md#chapter-10-network-policies).
+
+**1. Who enforces NetworkPolicies?**
+
+- A. The kube-apiserver
+- B. kube-proxy
+- C. CoreDNS
+- D. The CNI plugin
+
+**2. A Pod has no NetworkPolicy selecting it. What traffic does it accept?**
+
+- A. None
+- B. Everything
+- C. Only traffic from its own namespace
+- D. Only DNS
+
+**3. Two policies select the same Pod for ingress. What is the effective policy?**
+
+- A. The most recent one
+- B. The most restrictive one
+- C. Neither, until they are merged
+- D. The union of what both allow
+
+**4. Do you need a rule to allow the reply packets of an allowed connection?**
+
+- A. No: policies are stateful, so replies are allowed automatically
+- B. Yes, an egress rule on the server
+- C. Only for UDP
+- D. Only across namespaces
+
+**5. What does a policy with an empty podSelector and policyTypes: [Ingress], and no rules, do?**
+
+- A. Allows all ingress in the namespace
+- B. Applies to the whole cluster
+- C. Denies all ingress to every Pod in its namespace: default deny
+- D. Has no effect
+
+**6. In a from list, namespaceSelector and podSelector sit in the same list element. What does that mean?**
+
+- A. Either may match (OR)
+- B. The podSelector is ignored
+- C. It is a syntax error
+- D. Both must match (AND): Pods with that label in those namespaces
+
+**7. You add a default-deny egress policy and everything breaks, even allowed Services. Why?**
+
+- A. Services need ingress rules
+- B. DNS is blocked too, so no names resolve; allow port 53 to kube-dns
+- C. Egress policies also block ingress
+- D. The CNI plugin crashed
+
+**8. A connection blocked by a NetworkPolicy usually...**
+
+- A. Is refused immediately
+- B. Is redirected to an error page
+- C. Times out, because the packets are silently dropped
+- D. Is logged and allowed

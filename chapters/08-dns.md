@@ -354,3 +354,63 @@ If a Service name does not resolve, check that the Service exists in the namespa
 - DNS does not isolate namespaces; NetworkPolicies do.
 
 Everything so far has been inside the cluster. The next chapter brings traffic in from the outside world.
+
+## Check your understanding
+
+Choose the best answer for each question, then check your answers in [Answers to Chapter Questions](answers.md#chapter-8-cluster-dns-and-service-discovery).
+
+**1. Which DNS server provides cluster DNS?**
+
+- A. BIND, on each node
+- B. CoreDNS, running as a Deployment in kube-system
+- C. The kube-apiserver
+- D. kube-proxy
+
+**2. How does a Pod's DNS query reach CoreDNS?**
+
+- A. Directly to a CoreDNS Pod IP hard-coded in resolv.conf
+- B. Through the API server
+- C. To the kube-dns Service address, then DNATed by kube-proxy rules to a CoreDNS Pod
+- D. Through the node's systemd-resolved
+
+**3. What is the full DNS name of Service web in namespace shop?**
+
+- A. web.shop.svc.cluster.local
+- B. web.shop.cluster.local
+- C. web.svc.shop.cluster.local
+- D. shop.web.svc.cluster.local
+
+**4. Why does a Pod in namespace shop reach Service web by the short name web?**
+
+- A. The search list in resolv.conf expands it to web.shop.svc.cluster.local
+- B. web is a reserved name
+- C. CoreDNS guesses the namespace
+- D. Services are global
+
+**5. Do namespaces isolate DNS?**
+
+- A. Yes: Pods can only resolve Services in their own namespace
+- B. Only in production clusters
+- C. No: any Pod can resolve any Service name; isolation is a job for NetworkPolicies
+- D. Only for headless Services
+
+**6. What does ndots:5 cause for a lookup of api.github.com?**
+
+- A. It fails
+- B. Several queries with cluster search suffixes fail before the name is tried as written
+- C. It skips the search list
+- D. It is answered from the node cache
+
+**7. What does a headless Service (clusterIP: None) return in DNS?**
+
+- A. The ClusterIP
+- B. A CNAME
+- C. Nothing
+- D. One A record per ready Pod
+
+**8. Which dnsPolicy is the default?**
+
+- A. Default
+- B. ClusterFirst
+- C. None
+- D. ClusterFirstWithHostNet

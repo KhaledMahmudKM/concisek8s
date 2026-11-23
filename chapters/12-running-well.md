@@ -518,3 +518,63 @@ For "the app cannot reach the service" problems, walk the networking chapters in
 - Troubleshoot from **`kubectl get pods`** down through the layers, and use `describe`, `logs --previous`, events, and `kubectl debug`.
 
 That completes the tour. The Appendix collects the kubectl commands from every chapter, and the Glossary defines every term.
+
+## Check your understanding
+
+Choose the best answer for each question, then check your answers in [Answers to Chapter Questions](answers.md#chapter-12-running-workloads-well).
+
+**1. Which field does the scheduler use to decide whether a Pod fits on a node?**
+
+- A. Limits
+- B. Requests
+- C. Labels only
+- D. The image size
+
+**2. A container exceeds its memory limit. What happens?**
+
+- A. It is throttled
+- B. It is moved to another node
+- C. The kernel kills it (OOMKilled, exit code 137) and it is restarted
+- D. Nothing; limits are advisory
+
+**3. Why do many teams set CPU requests but no CPU limit?**
+
+- A. CPU throttling causes hard-to-diagnose latency spikes; without a limit, containers can use idle CPU
+- B. CPU limits are not supported
+- C. Requests already cap CPU
+- D. Limits break autoscaling
+
+**4. A readiness probe fails. What happens?**
+
+- A. The Pod is removed from Service endpoints but not restarted
+- B. The container is restarted
+- C. The Pod is deleted
+- D. The node is drained
+
+**5. Why must a liveness probe never depend on a database?**
+
+- A. Databases are slow to answer
+- B. Liveness probes cannot open network connections
+- C. A brief database blip would make the kubelet restart every Pod at once
+- D. It would break readiness
+
+**6. What does the HorizontalPodAutoscaler measure CPU utilization against?**
+
+- A. Limits
+- B. Requests
+- C. Node capacity
+- D. The previous hour's average
+
+**7. Which statement about RBAC is true?**
+
+- A. It supports explicit deny rules
+- B. Roles always apply cluster-wide
+- C. ServiceAccounts cannot be bound to Roles
+- D. It is purely additive: anything not granted is refused
+
+**8. How do you debug a running Pod whose minimal image has no shell?**
+
+- A. kubectl exec into it
+- B. Attach an ephemeral container with kubectl debug, sharing its namespaces
+- C. SSH into the Pod
+- D. Rebuild the image with a shell

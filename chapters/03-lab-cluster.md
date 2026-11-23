@@ -355,3 +355,63 @@ kubectl apply -f hello.yaml --dry-run=server
 - Load local images with `kind load docker-image`, and avoid `latest`.
 
 With a cluster in hand, the next chapter looks closely at the unit everything else is built on: the Pod.
+
+## Check your understanding
+
+Choose the best answer for each question, then check your answers in [Answers to Chapter Questions](answers.md#chapter-3-a-lab-cluster-with-kind).
+
+**1. How does kind run Kubernetes nodes?**
+
+- A. As Docker containers, each running a full node inside
+- B. As virtual machines
+- C. As processes directly on the host
+- D. In a public cloud
+
+**2. Why does the book use a cluster with one control plane node and two workers?**
+
+- A. kind cannot create single-node clusters
+- B. Two workers are required for etcd
+- C. A single-node cluster hides interesting parts, such as traffic crossing between nodes
+- D. kubectl needs at least three nodes
+
+**3. What is a kubeconfig context?**
+
+- A. A namespace
+- B. A YAML manifest
+- C. A node label
+- D. A named combination of a cluster, a user and a default namespace
+
+**4. Which command should become a habit before running anything destructive?**
+
+- A. kubectl get pods
+- B. kubectl config current-context
+- C. kind get clusters
+- D. docker ps
+
+**5. Which top-level manifest field do you never write yourself?**
+
+- A. apiVersion
+- B. metadata
+- C. status
+- D. spec
+
+**6. Which apiVersion does a Deployment use?**
+
+- A. apps/v1
+- B. v1
+- C. core/v1
+- D. deployments/v1
+
+**7. How do you make a locally built image available to a kind cluster?**
+
+- A. kind load docker-image IMAGE --name lab
+- B. docker push it to localhost
+- C. Mount the Docker socket into each Pod
+- D. Nothing: kind nodes use the host's image store
+
+**8. Why avoid the latest tag for local images in kind?**
+
+- A. latest images are larger
+- B. kind deletes latest images
+- C. Kubernetes treats latest as always pull, and the pull fails because the image is in no registry
+- D. latest is reserved for official images
